@@ -3,7 +3,7 @@ package com.example.voterapp.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "voter")
+@Table(name = "voterInfo")
 public class Voter {
 
     @Id
