@@ -9,19 +9,16 @@ public class Voter {
     @Id
     private Integer id;
 
-    @Column(nullable = false)
     private String name;
 
     private String phone;
 
     private String address;
 
-    @Column(nullable = false)
     private boolean voted = false;
 
     private String party;
 
-    @Column(nullable = false)
     private boolean confirmed = false;
 
     public Voter() {
