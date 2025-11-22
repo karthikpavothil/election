@@ -3,11 +3,10 @@ package com.example.voterapp.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "voterInfo")
+@Table(name = "voter_info")
 public class Voter {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
