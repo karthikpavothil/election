@@ -3,23 +3,29 @@ package com.example.voterapp.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "voter_info")
+@Table(name = "voter_details")
 public class Voter {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
 
     private String phone;
 
     private String address;
 
+    @Column(nullable = false)
     private boolean voted = false;
 
     private String party;
 
+    @Column(nullable = false)
     private boolean confirmed = false;
+    private String remarks;
+    private String comments;
 
     public Voter() {
     }
@@ -78,5 +84,21 @@ public class Voter {
 
     public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

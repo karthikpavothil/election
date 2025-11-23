@@ -76,6 +76,20 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-md-4 mb-2">
+                <div class="filter-label">Follow-up By</div>
+                <div class="dropdown w-100">
+                    <button class="btn btn-outline-secondary w-100 dropdown-toggle btn-pill" type="button" data-bs-toggle="dropdown">
+                        Follow-up By Filter
+                    </button>
+                    <ul class="dropdown-menu w-100">
+                        <li><a class="dropdown-item" th:href="@{/voters}">All</a></li>
+                        <li th:each="c : ${commentList}">
+                            <a class="dropdown-item" th:text="${c}" th:href="@{/voters(comments=${c})}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -98,6 +112,8 @@
                     <th>Voted</th>
                     <th>Confirmed</th>
                     <th>Party</th>
+                    <th>Remarks</th>
+                    <th>Comments</th>
                     <th style="width: 200px;">Actions</th>
                 </tr>
                 </thead>
@@ -116,6 +132,8 @@
                               th:classappend="${voter.confirmed} ? 'badge bg-primary' : 'badge bg-secondary'"></span>
                     </td>
                     <td th:text="${voter.party}"></td>
+                    <td th:text="${voter.remarks}"></td>
+                    <td th:text="${voter.comments}"></td>
                     <td>
                         <div class="btn-group" role="group">
                             <a class="btn btn-sm btn-outline-primary" th:href="@{'/voters/edit/' + ${voter.id}}">Edit</a>
