@@ -36,6 +36,7 @@ public class VoterController {
                              @RequestParam(name = "confirmed", required = false) Optional<Boolean> confirmed,
                              @RequestParam(name = "party", required = false) Optional<String> party,
                              @RequestParam(name = "comments", required = false) Optional<String> comments,
+                             @RequestParam(name = "remarks", required = false) Optional<String> remarks,
                              Model model) {
 
         List<Voter> voters;
@@ -45,6 +46,9 @@ public class VoterController {
             voters.sort(Comparator.comparing(Voter::getId));
         }else if (comments.isPresent() && !comments.get().isBlank()) {
             voters = voterRepository.findByCommentsIgnoreCase(comments.get());
+            voters.sort(Comparator.comparing(Voter::getId));
+        }else if (remarks.isPresent() && !remarks.get().isBlank()) {
+            voters = voterRepository.findByRemarksIgnoreCase(remarks.get());
             voters.sort(Comparator.comparing(Voter::getId));
         } else if (voted.isPresent()) {
             voters = voterRepository.findByVoted(voted.get());
@@ -59,6 +63,7 @@ public class VoterController {
 
         List<String> parties = voterRepository.findDistinctParties();
         List<String> commentsList = voterRepository.findDistinctComments();
+        List<String> remarkList = voterRepository.findDistinctRemarks();
 
         model.addAttribute("voters", voters);
         model.addAttribute("selectedVoted", voted.orElse(null));
@@ -66,6 +71,7 @@ public class VoterController {
         model.addAttribute("selectedParty", party.orElse(""));
         model.addAttribute("parties", parties);
         model.addAttribute("commentList", commentsList);
+        model.addAttribute("remarkList", remarkList);
 
         return "voters";
     }
