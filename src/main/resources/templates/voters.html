@@ -90,6 +90,20 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-md-4 mb-2">
+                <div class="filter-label">Remarks</div>
+                <div class="dropdown w-100">
+                    <button class="btn btn-outline-secondary w-100 dropdown-toggle btn-pill" type="button" data-bs-toggle="dropdown">
+                        Remarks
+                    </button>
+                    <ul class="dropdown-menu w-100">
+                        <li><a class="dropdown-item" th:href="@{/voters}">All</a></li>
+                        <li th:each="r : ${remarkList}">
+                            <a class="dropdown-item" th:text="${r}" th:href="@{/voters(remarks=${r})}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="d-flex justify-content-between align-items-center mb-3">
